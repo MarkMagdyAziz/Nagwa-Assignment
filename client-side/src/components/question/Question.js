@@ -67,7 +67,7 @@ export default function Question(props) {
     }
   };
   return (
-    <div>
+    <Container fluid>
       <Container fluid>
         <ProgressBar progress={questionNumber} />
       </Container>
@@ -76,8 +76,8 @@ export default function Question(props) {
         fluid
         className="shadow">
         <Row>
-          <Col className="d-flex justify-content-center my-5">
-            <h1>{currentQuestion.word}</h1>
+          <Col className="d-flex justify-content-center my-5 fs-5">
+            <h1 className="fs-1">{currentQuestion.word}</h1>
           </Col>
         </Row>
         <form onSubmit={handleSubmit}>
@@ -85,7 +85,7 @@ export default function Question(props) {
             <Col
               md={6}
               key="inline-drop"
-              className="mt-3 d-flex justify-content-around">
+              className="mt-3 d-flex justify-content-around fs-4">
               {['noun', 'verb', 'adverb', 'adjective'].map((type) => (
                 <Form.Check
                   inline
@@ -108,14 +108,14 @@ export default function Question(props) {
                 disabled={!studentAnswer || answerFeedback}
                 type="submit"
                 variant="primary"
-                size="sm">
+                size="md">
                 Submit
               </Button>
               <Button
-                className="ms-5 px-3"
+                className="ms-5 px-4"
                 type="button"
                 variant="success"
-                size="sm"
+                size="md"
                 onClick={handleCurrentQuestion}
                 disabled={questionNumber >= 10 || !answerFeedback}>
                 Next
@@ -123,14 +123,14 @@ export default function Question(props) {
             </Col>
           </Row>
         </form>
-        <Row>
-          <Col className="mt-5 d-flex justify-content-center">
-            <h3 className={`${answerFeedback === 'Incorrect' ? 'text-warning' : 'text-success'}`}>
-              {answerFeedback}
-            </h3>
-          </Col>
-        </Row>
       </Container>
-    </div>
+      <Row className="mt-5">
+        <Col className=" d-flex justify-content-center">
+          <h3 className={`${answerFeedback === 'Incorrect' ? 'text-danger' : 'text-success'}`}>
+            {answerFeedback}
+          </h3>
+        </Col>
+      </Row>
+    </Container>
   );
 }

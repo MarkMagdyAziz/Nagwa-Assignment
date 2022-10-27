@@ -1,16 +1,24 @@
 import axios from 'axios';
 
+export const instance = axios.create({
+  baseURL: 'http://localhost:5000/',
+});
+
 // fetch words list exam from back end point
 export function getWordsList() {
-  return axios
-    .get(`http://localhost:5000/words`)
+  return instance({
+    url: 'words',
+    method: 'GET',
+  })
     .then(({ data }) => data)
     .catch((err) => alert(err));
 }
 // fetch rank from back end point
 export function getStudentRank(studentScore) {
-  return axios
-    .post(`http://localhost:5000/rank?score=${studentScore}`)
-    .then((response) => response.data)
+  return instance({
+    url: `rank?score=${studentScore}`,
+    method: 'POST',
+  })
+    .then(({ data }) => data)
     .catch((err) => alert(err));
 }
