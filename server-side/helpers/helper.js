@@ -55,7 +55,6 @@ function handleRankOfScore(studentScore) {
   let filterRank = partOfSpech.scoresList.filter((score) => score < studentScore);
   // calculate result of student rank
   let rank = Number(((filterRank.length / partOfSpech.scoresList.length) * 100).toFixed(2));
-  partOfSpech.scoresList.push(rank);
   // return object for student rank and his/her peers
   let studentRank = {
     rank,

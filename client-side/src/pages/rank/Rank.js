@@ -8,27 +8,35 @@ import { getStudentRank } from '../../services/examAPI';
 
 export default function Rank() {
   const dispatch = useDispatch();
-  const [rank, setRank] = useState({});
+  const [studentRank, setStudentRank] = useState(0);
   const studentScore = useStudentScore();
   const navigate = useNavigate();
-
+  const [peersRanks, setPeersRanks] = useState([]);
   useEffect(() => {
     // POST request using axios inside service, to get the student rank
-    getStudentRank(studentScore).then(({ rank }) => setRank(rank));
+    getStudentRank(studentScore).then(({ rank }) => {
+      let sorted = rank.peersRanks.map((rank) => rank).sort(order);
+      setStudentRank(rank.rank);
+      setPeersRanks(sorted);
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   // on click try again button handle go to practive quuiz again
   const handleTryAgain = () => {
     dispatch(resetScore());
     navigate('/', { replace: true });
   };
+  // order items
+  const order = (a, b) => {
+    return a < b ? -1 : a > b ? 1 : 0;
+  };
+
   return (
     <Container>
       <Row>
         <Col>
-          <h3>Your Rank : {rank.rank}</h3>
+          <h3>Your Rank : {studentRank}</h3>
         </Col>
       </Row>
 
@@ -45,8 +53,8 @@ export default function Rank() {
               </tr>
             </thead>
             <tbody>
-              {rank.peersRanks !== undefined &&
-                rank.peersRanks.map((peerRank, index, arr) => {
+              {peersRanks !== undefined &&
+                peersRanks.map((peerRank, index, arr) => {
                   return (
                     <tr key={index}>
                       <td>{peerRank}</td>
