@@ -15,7 +15,8 @@ export default function Rank() {
   useEffect(() => {
     // POST request using axios inside service, to get the student rank
     getStudentRank(studentScore).then(({ rank }) => {
-      let sorted = rank.peersRanks.map((rank) => rank).sort(order);
+      let sorted = [...new Set(rank.peersRanks)].map((rank) => rank).sort(order);
+
       setStudentRank(rank.rank);
       setPeersRanks(sorted);
     });
