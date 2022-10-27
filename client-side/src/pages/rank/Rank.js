@@ -9,7 +9,6 @@ import { getStudentRank } from '../../services/examAPI';
 export default function Rank() {
   const dispatch = useDispatch();
   const [rank, setRank] = useState({});
-  const score = useSelector(({ studentScore }) => studentScore.score);
   const { data } = useSelector(({ wordsReducer }) => wordsReducer.data);
   const studentScore = useStudentScore();
   const navigate = useNavigate();
@@ -31,7 +30,6 @@ export default function Rank() {
       <Row>
         <Col>
           <h3>Your Rank : {rank.rank}</h3>
-          <h3>Your Score : {score * 10}</h3>
         </Col>
       </Row>
 
