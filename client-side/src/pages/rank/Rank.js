@@ -9,13 +9,12 @@ import { getStudentRank } from '../../services/examAPI';
 export default function Rank() {
   const dispatch = useDispatch();
   const [rank, setRank] = useState({});
-  const { data } = useSelector(({ wordsReducer }) => wordsReducer.data);
   const studentScore = useStudentScore();
   const navigate = useNavigate();
 
   useEffect(() => {
     // POST request using axios inside service, to get the student rank
-    getStudentRank(studentScore).then((rank) => setRank(rank));
+    getStudentRank(studentScore).then(({ rank }) => setRank(rank));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,17 +41,15 @@ export default function Rank() {
             size="sm">
             <thead>
               <tr>
-                <th>Word</th>
-                <th>Correct Answer</th>
+                <th>Peers Ranks</th>
               </tr>
             </thead>
             <tbody>
-              {data !== undefined &&
-                data.map((part, index, arr) => {
+              {rank.peersRanks !== undefined &&
+                rank.peersRanks.map((peerRank, index, arr) => {
                   return (
-                    <tr key={part.id}>
-                      <td>{part.word}</td>
-                      <td>{part.pos}</td>
+                    <tr key={index}>
+                      <td>{peerRank}</td>
                     </tr>
                   );
                 })}
