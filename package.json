@@ -1,0 +1,20 @@
+{
+  "name": "nagwatask",
+  "version": "1.0.0",
+  "description": "An application for Nagwa as an assignment, simple exam for students \r each exam ten random choose question.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkMagdyAziz/Nagwa-Assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkMagdyAziz/Nagwa-Assignment/issues"
+  },
+  "homepage": "https://github.com/MarkMagdyAziz/Nagwa-Assignment#readme"
+}
