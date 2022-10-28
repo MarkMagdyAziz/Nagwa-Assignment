@@ -1,6 +1,6 @@
 ﻿# Nagwa-Assignment
 
-An application for Nagwa as an assignment, simple exam for students 
+An application for Nagwa Company as an assignment, simple exam for students 
 each exam ten random choose question.
 
 #### instllation and setup insturctions
